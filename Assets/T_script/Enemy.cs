@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     public int health = 100; // Initial enemy health
     public int maxHP;
+    public float moveSpeed = 5f;
     [SerializeField] int coinReward;
     private bool killedByTurret = false; // Flag to check if the enemy was killed by a turret
 
@@ -12,6 +13,7 @@ public class Enemy : MonoBehaviour
         maxHP = health;
         //Debug.Log("Enemy spawned with health: " + health);
     }
+
 
     public void TakeDamage(int amount)
     {
@@ -32,7 +34,7 @@ public class Enemy : MonoBehaviour
         // Check if the enemy was killed by a turret
         if (killedByTurret)
         {
-            CoinSystem.AddCoins(coinReward); // Call the CoinSystem to add coins when the enemy dies
+            CoinSystem.current.AddCoins(coinReward); // Call the CoinSystem to add coins when the enemy dies
             //Debug.Log("Coins added: 10");
         }
 
@@ -42,7 +44,7 @@ public class Enemy : MonoBehaviour
     // Called when the enemy collides with the HumanKingdom
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Enemy collided with: " + other.gameObject.name); // Log the name of the collided object
+        
 
         if (other.CompareTag("HumanKingdom")) // Check if the collision is with the HumanKingdom
         {

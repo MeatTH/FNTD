@@ -6,15 +6,10 @@ using UnityEngine.UIElements;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] Transform[] points;
-    [SerializeField] GameObject path;
-    [SerializeField] GameObject enemyprefab;
-    [SerializeField] string humanKingdomName;
+    public GameObject nextPath;
+    public List<GameObject> enemiesList;
     [SerializeField] string spawners;
-    [SerializeField] GameObject humanKingdom;
-    public int numToSpawn = 0;
 
-    public int size = 1;
     float timer;
     public float spawnTimer;
     private int numOfPathChange = 1;
@@ -22,60 +17,35 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         transform.parent = GameObject.Find(spawners).transform;
-
-        humanKingdom = GameObject.Find(humanKingdomName);
-        path = this.transform.Find("Path").gameObject;
-        List<Transform> childrenList = new List<Transform>();
-        childrenList.Add(transform);
-        foreach (Transform child in path.transform)
-        {
-            // This iterates over all direct children, not the parent
-
-            childrenList.Add(child);
-        }
-        childrenList.Add(humanKingdom.transform);
-
-        points = childrenList.ToArray();
+        nextPath = BuildingSystem.current.humanKingdom;
     }
 
     // Update is called once per frame
     void Update()
     {
         timer -= Time.deltaTime;
-        if (timer < 0f && numToSpawn > 0)
+        if (timer < 0f)
         {
-            for (int i = size; i > 0; i--)
-            {
                 Spawn();
-            }
-            numToSpawn--;
             timer = spawnTimer;
         }
     }
 
-    void Spawn()
+    public void AddToSpawnQueue(GameObject enemy)
     {
-        GameObject enemy = Instantiate(enemyprefab, this.transform.Find("Enemy"));
-        enemy.GetComponent<path>().AddPath(points);
+        enemiesList.Add(enemy);
     }
 
-    public void ChangePath(string newPathName)
+    void Spawn()
     {
-        timer = spawnTimer;
-        path = this.transform.Find(newPathName).gameObject;
+        if(enemiesList.Count <= 0) { return; }
 
-        List<Transform> childrenList = new List<Transform>();
-        childrenList.Add(transform);
-        foreach (Transform child in path.transform)
+        if (enemiesList[0].tag == "Enemy")
         {
-            // This iterates over all direct children, not the parent
-
-            childrenList.Add(child);
+            //Debug.Log("is enemy");
+            GameObject enemy = Instantiate(enemiesList[0], this.transform.Find("Enemy"));
+            enemy.GetComponent<path>().ToPath = nextPath;
         }
-        childrenList.Add(humanKingdom.transform);
-        path.name = "Path " + numOfPathChange;
-        numOfPathChange++;
-
-        points = childrenList.ToArray();
+        enemiesList.RemoveAt(0);
     }
 }

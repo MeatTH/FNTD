@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
+using Random = UnityEngine.Random;
 
 public class BuildingSystem : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private Tilemap MainTilemap;
     [SerializeField] private TileBase whiteTile;
     public GameObject humanKingdom;
+    public GameObject paths;
     [SerializeField] private GameObject floor;
 
     public float buildingRange;
@@ -83,7 +85,7 @@ public class BuildingSystem : MonoBehaviour
                 Destroy(objectToPlace);
             }
 
-            else if (!CoinSystem.SpendCoins(objectToPlaceCost))
+            else if (!CoinSystem.current.SpendCoins(objectToPlaceCost))
             {
                 Debug.Log("Not enough coins to place the turret.");
                 Destroy(objectToPlace);
@@ -108,6 +110,47 @@ public class BuildingSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Destroy(objectToPlace);
+        }
+    }
+
+    public void RNGBuilding(int ObjectAmount, GameObject[] gameObjectPrefab)
+    {
+        int attempt = 0;
+        //spawner
+        while (ObjectAmount > 0)
+        {
+            Vector3 randomPosition = new Vector3(Random.Range(0, BuildingSystem.current.buildingRange) * RandomSign(), 0.6f, Random.Range(0, BuildingSystem.current.buildingRange) * RandomSign());
+            Vector3 randomPositionSnap = BuildingSystem.current.SnapCoordinateToGrid(randomPosition);
+
+            bool isInValidSpace = (IsInSquare(BuildingSystem.current.buildingRange, randomPositionSnap.x, randomPositionSnap.z)
+                               && !IsInSquare(BuildingSystem.current.noRNGSpawnRange, randomPositionSnap.x, randomPositionSnap.z));
+
+
+            if (isInValidSpace)
+            {
+                try
+                {
+                    if (BuildingSystem.current.InitializeObjectRNG(gameObjectPrefab[Random.Range(0, gameObjectPrefab.Length)], randomPositionSnap))
+                    {
+                        ObjectAmount--;
+                    }
+                    else
+                    {
+                        attempt++;
+                    }
+                }
+                catch (IndexOutOfRangeException ex)
+                {
+                    //Debug.LogError(ex.Message);
+                    attempt++;
+                }
+            }
+
+            if (attempt > 20)
+            {
+                Debug.LogError("attempt to spawn Enemies spawner are excess 20, stop the function");
+                break;
+            }
         }
     }
 
@@ -148,6 +191,19 @@ public class BuildingSystem : MonoBehaviour
         }
 
         return array;
+    }
+
+    private static int RandomSign()
+    {
+        return Random.value < 0.5f ? 1 : -1;
+    }
+
+    private bool IsInSquare(float range, float x, float y)
+    {
+        bool isXInRange = (x <= range && x >= -range);
+        bool isYInRange = (y <= range && y >= -range);
+
+        return isXInRange && isYInRange;
     }
 
     void OnDrawGizmosSelected()
@@ -201,7 +257,7 @@ public class BuildingSystem : MonoBehaviour
 
         if (!IsColideWithWhiteTile(objectToPlaceRNG_PlaceableObjectScript))
         {
-            Debug.Log("invalid RNG placement.");
+            //Debug.Log("invalid RNG placement.");
             Destroy(objectToPlaceRNG);
             return false;
         } else
@@ -211,7 +267,7 @@ public class BuildingSystem : MonoBehaviour
             TakeArea(start, objectToPlaceRNG_PlaceableObjectScript.Size);
         if (objectToPlaceRNG.GetComponent<Turret>() != null)
         {
-            Debug.Log("RNG is enable");
+            //Debug.Log("RNG is enable");
             objectToPlaceRNG.GetComponent<Turret>().enabled = true;
         }
 
