@@ -126880,6 +126880,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 675661044}
     m_Modifications:
+    - target: {fileID: 165015890240253574, guid: d6a2b78abe09aa34caa29d22804fe130, type: 3}
+      propertyPath: m_Name
+      value: Minotaur_stand_still
+      objectReference: {fileID: 0}
     - target: {fileID: 648960072631776316, guid: d6a2b78abe09aa34caa29d22804fe130, type: 3}
       propertyPath: m_LocalPosition.x
       value: 236.99902
@@ -126919,10 +126923,6 @@ PrefabInstance:
     - target: {fileID: 648960072631776316, guid: d6a2b78abe09aa34caa29d22804fe130, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 165015890240253574, guid: d6a2b78abe09aa34caa29d22804fe130, type: 3}
-      propertyPath: m_Name
-      value: Minotaur_stand_still
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -143763,7 +143763,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1786030848 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6401020017779223678, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7399781380677327652, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
   m_PrefabInstance: {fileID: 1515232750295557423}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1786223566
@@ -145956,8 +145956,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 2500
-  field of view: 44.7
+  far clip plane: 3500
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -145983,8 +145983,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812798893}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.4179719, z: 0, w: -0.90845996}
-  m_LocalPosition: {x: 1028.9999, y: 51.8, z: 3684.5}
+  m_LocalRotation: {x: 0.02927324, y: 0.9414703, z: -0.08530194, w: 0.32480812}
+  m_LocalPosition: {x: 2851.4282, y: 17.50293, z: 3638.0146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -174480,55 +174480,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: -1489891242448722160, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cc7be5e5a779df342a5b017f716c7746, type: 2}
+    - target: {fileID: 7399781380677327652, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
+      propertyPath: m_Name
+      value: Baphomet_Order_To_Attack (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3741.6
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalPosition.y
       value: 68.72
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1003.58
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 6025584744120809156, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+    - target: {fileID: 7924819501372277150, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6401020017779223678, guid: 9429bee1467453b4a9263e809300f567, type: 3}
-      propertyPath: m_Name
-      value: Minotaur_Order_To_Attack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9429bee1467453b4a9263e809300f567, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 7fccea2e9490cf64198a1d6d573745ac, type: 3}
 --- !u!4 &1537548218801774157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4647351899329307607, guid: 08ded6fd940eab941b6938bfd872b5ca, type: 3}
